@@ -1,11 +1,19 @@
 # Sources with Dockerfile to assemble the docker image.
 Python Sample App
 
+Run the App Locally without docker
+Step 1: Clone the code
 git clone https://github.com/timlam007/python-sample
 
+Step 2: Install dependencies
+The application uses the psutil and Flask, Plotly, boto3 libraries. Install them using pip:
+pip install -r requirements.txt
+
+Step 3: Run the application
+To run the application, navigate to the root directory of the project and execute the following command:
 python helloworld.py
 
-
+-------------------------------------------------------------------------------------------------------------------------------------
 D:\projects\tekton\python-sample>git pull .
 
 D:\projects\tekton\python-sample>notepad helloworld.py
