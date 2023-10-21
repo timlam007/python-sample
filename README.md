@@ -4,6 +4,7 @@ Python Sample App
 Run the App Locally without docker
 
 Step 1: Clone the code
+
 git clone https://github.com/timlam007/python-sample
 
 Step 2: Install dependencies
