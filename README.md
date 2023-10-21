@@ -1,4 +1,4 @@
-# Sources with Dockerfile to assemble the docker image.
+# Sources with Dockerfile to assemble the docker image and tested with OpenShift 4 successfully
 Python Sample App
 
 Run the App Locally without docker
