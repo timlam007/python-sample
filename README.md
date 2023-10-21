@@ -15,6 +15,9 @@ To run the application, navigate to the root directory of the project and execut
 python helloworld.py
 
 -------------------------------------------------------------------------------------------------------------------------------------
+
+Run Docker
+
 D:\projects\tekton\python-sample>git pull .
 
 D:\projects\tekton\python-sample>notepad helloworld.py
@@ -28,10 +31,6 @@ D:\projects\tekton\python-sample>git commit -m "Tim Changed"
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 D:\projects\tekton\python-sample>git push
-
-To https://github.com/timlam007/python-sample
-   cb61dc5..564c83d  master -> master
-
 
 D:\projects\tekton\python-sample>docker build .
 
