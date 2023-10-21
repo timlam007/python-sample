@@ -15,6 +15,8 @@ D:\projects\tekton\python-sample>git status
 D:\projects\tekton\python-sample>git add .
 
 D:\projects\tekton\python-sample>git commit -m "Tim Changed"
+
+
 [master 564c83d] Tim Changed
  1 file changed, 1 insertion(+), 1 deletion(-)
 
