@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: create-app
+spec:
+  steps:
+    - name: create-app
+      image: registry.redhat.io/openshift4/ose-cli:v4.11.0-202310131344.p0.g3470d04.assembly.stream
+      command:
+        - oc
+      args:
+        - new-app
+        - python~https://github.com/timlam007/python-sample
+        - python-sample-app

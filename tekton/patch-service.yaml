@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: patch-service
+spec:
+  steps:
+    - name: patch-service
+      image: registry.redhat.io/openshift4/ose-cli:v4.11.0-202310131344.p0.g3470d04.assembly.stream
+      command:
+        - oc
+      args:
+        - patch
+        - svc/python-sample-app
+        - --type=strategic
+        - --patch-file=patch.json

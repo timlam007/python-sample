@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: python-app-route
+  namespace: tinlam-dev
+spec:
+  to:
+    kind: Service
+    name: python-app-service
+  port:
+    targetPort: 5000

@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: python-sample-app-pipeline
+spec:
+  tasks:
+    - name: create-app
+      taskRef:
+        name: create-app
+    - name: set-env-var
+      taskRef:
+        name: set-env-var
+      runAfter:
+        - create-app
+    - name: expose-route
+      taskRef:
+        name: expose-route
+      runAfter:
+        - set-env-var
+    - name: patch-service
+      taskRef:
+        name: patch-service
+      runAfter:
+        - expose-route

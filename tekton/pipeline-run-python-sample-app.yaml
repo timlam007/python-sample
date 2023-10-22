@@ -1,0 +1,8 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: python-sample-app-pipeline-run-1
+spec:
+  pipelineRef:
+    name: python-sample-app-pipeline
+

@@ -1,0 +1,88 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: python-sample-app-task-sequence
+spec:
+  tasks:
+    - name: create-app-task
+      taskRef:
+        name: create-app
+    - name: set-env-var-task
+      taskRef:
+        name: set-env-var
+    - name: expose-route-task
+      taskRef:
+        name: expose-route
+    - name: patch-service-task
+      taskRef:
+        name: patch-service
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: create-app
+spec:
+  steps:
+    - name: create-app
+      image: registry.redhat.io/openshift4/ose-cli:v4.11.0-202310131344.p0.g3470d04.assembly.stream
+      command:
+        - oc
+      args:
+        - new-app
+        - python~https://github.com/timlam007/python-sample
+        - python-sample-app
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: set-env-var
+spec:
+  steps:
+    - name: set-env-var
+      image: registry.redhat.io/openshift4/ose-cli:v4.11.0-202310131344.p0.g3470d04.assembly.stream
+      command:
+        - oc
+      args:
+        - set
+        - env
+        - bc/python-sample-app
+        - APP_FILE=helloworld.py
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: expose-route
+spec:
+  steps:
+    - name: expose-route
+      image: registry.redhat.io/openshift4/ose-cli:v4.11.0-202310131344.p0.g3470d04.assembly.stream
+      command:
+        - oc
+      args:
+        - create
+        - route
+        - edge
+        - python-sample-app
+        - --service=python-sample-app
+        - --port=5000-tcp
+        - --insecure-policy=Redirect
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: patch-service
+spec:
+  steps:
+    - name: patch-service
+      image: registry.redhat.io/openshift4/ose-cli:v4.11.0-202310131344.p0.g3470d04.assembly.stream
+      command:
+        - oc
+      args:
+        - patch
+        - svc/python-sample-app
+        - --type=strategic
+        - --patch-file=patch.json
